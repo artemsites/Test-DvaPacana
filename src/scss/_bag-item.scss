@@ -1,0 +1,14 @@
+@use "../scss/mixins/border.scss" as *;
+
+.bag-item {
+  @include border;
+
+  width: 75px;
+  height: 75px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}

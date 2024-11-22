@@ -1,47 +1,71 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <main class="main">
+    <div class="box-top">
+      <SelectedUser class="bag _small" :items="userBagSelected"></SelectedUser>
+      <SelectedStore class="bag _small" :items="storeBagSelected"></SelectedStore>
     </div>
-  </header>
 
-  <main>
-    <TheWelcome />
+    <div class="box-bottom">
+      <BagPrototype class="bag _big" :items="userBag" type="user"></BagPrototype>
+      <BagPrototype class="bag _big" :items="storeBag" type="store"></BagPrototype>
+    </div>
   </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<style scoped lang="scss">
+  @use "./scss/mixins/border.scss" as *;
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+  .main {
+    max-width: 1200px;
 
-@media (min-width: 1024px) {
-  header {
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    flex-direction: column;
+    gap: 50px;
+
+    margin: auto;
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  .box-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
   }
 
-  header .wrapper {
+  .box-bottom {
     display: flex;
-    place-items: flex-start;
+    justify-content: space-between;
+    gap: 50px;
+  }
+
+  .bag {
+    @include border;
+
+    display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 15px;
+
+    padding: 15px;
+
+    &._small {
+      width: 300px;
+      min-height: 200px;
+    }
+
+    &._big {
+      width: 500px;
+      height: 700px;
+    }
   }
-}
 </style>
+
+<script setup>
+  import { useBagsStore } from "./stores/bags"
+  import BagPrototype from "./components/BagPrototype.vue"
+  import SelectedUser from "./components/SelectedUser.vue"
+  import SelectedStore from "./components/SelectedStore.vue"
+
+  let { userBag, storeBag, userBagSelected, storeBagSelected } = useBagsStore()
+</script>
