@@ -106,5 +106,15 @@ export const useBagsStore = defineStore('bags', () => {
     }
   }
 
-  return { userBag, userBagSelected, storeBag, storeBagSelected, selectItem, removeItem }
+  let userBagCountAll = ref(userBag.value.length + userBagSelected.value.length)
+
+  return {
+    userBag,
+    userBagCountAll,
+    userBagSelected,
+    storeBag,
+    storeBagSelected,
+    selectItem,
+    removeItem,
+  }
 })

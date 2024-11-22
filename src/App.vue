@@ -1,8 +1,8 @@
 <template>
   <main class="main">
     <div class="box-top">
-      <SelectedPrototype class="bag _small" :items="userBagSelected" type="user"></SelectedPrototype>
-      <SelectedPrototype class="bag _small" :items="storeBagSelected" type="store"></SelectedPrototype>
+      <SelectedUser class="bag _small" :items="userBagSelected"></SelectedUser>
+      <SelectedStore class="bag _small" :items="storeBagSelected"></SelectedStore>
     </div>
 
     <div class="box-bottom">
@@ -64,7 +64,8 @@
 <script setup>
   import { useBagsStore } from "./stores/bags"
   import BagPrototype from "./components/BagPrototype.vue"
-  import SelectedPrototype from "./components/SelectedPrototype.vue"
+  import SelectedUser from "./components/SelectedUser.vue"
+  import SelectedStore from "./components/SelectedStore.vue"
 
   let { userBag, storeBag, userBagSelected, storeBagSelected } = useBagsStore()
 </script>
