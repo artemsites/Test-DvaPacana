@@ -92,5 +92,19 @@ export const useBagsStore = defineStore('bags', () => {
     }
   }
 
-  return { userBag, userBagSelected, storeBag, storeBagSelected, selectItem }
+  function removeItem(itemForRemoved, type) {
+    if (type === 'user') {
+      if (userBagSelected.value.length > 0) {
+        moveObjFromArrayToArrayByKey(itemForRemoved, userBagSelected.value, userBag.value, 'id')
+      }
+    }
+
+    if (type === 'store') {
+      if (storeBagSelected.value.length > 0) {
+        moveObjFromArrayToArrayByKey(itemForRemoved, storeBagSelected.value, storeBag.value, 'id')
+      }
+    }
+  }
+
+  return { userBag, userBagSelected, storeBag, storeBagSelected, selectItem, removeItem }
 })

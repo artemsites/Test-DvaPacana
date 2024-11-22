@@ -1,8 +1,8 @@
 <template>
   <main class="main">
     <div class="box-top">
-      <SelectedPrototype class="bag _small" :items="userBagSelected"></SelectedPrototype>
-      <SelectedPrototype class="bag _small" :items="storeBagSelected"></SelectedPrototype>
+      <SelectedPrototype class="bag _small" :items="userBagSelected" type="user"></SelectedPrototype>
+      <SelectedPrototype class="bag _small" :items="storeBagSelected" type="store"></SelectedPrototype>
     </div>
 
     <div class="box-bottom">

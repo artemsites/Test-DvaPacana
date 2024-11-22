@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bag-item" v-for="item of items" :key="item.id">{{ item.name }}</div>
+    <div class="bag-item" v-for="item of items" :key="item.id" @click="removeItem(item, type)">{{ item.name }}</div>
   </div>
 </template>
 
@@ -9,11 +9,11 @@
 </style>
 
 <script setup>
-  // import { useBagsStore } from "../stores/bags"
-  // let {  } = useBagsStore()
+  import { useBagsStore } from "../stores/bags"
+  let { removeItem } = useBagsStore()
 
   defineProps({
     items: Array,
-    // type: String
+    type: String
   })
 </script>
