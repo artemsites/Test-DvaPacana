@@ -1,6 +1,8 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
+import { moveObjFromArrayToArrayByKey } from '../utils/moveObjFromArrayToArrayByKey'
+
 export const useBagsStore = defineStore('bags', () => {
   const userBag = ref([
     {
@@ -77,24 +79,17 @@ export const useBagsStore = defineStore('bags', () => {
   const storeBagSelected = ref([])
 
   function selectItem(itemSelected, type) {
-    // console.log('itemSelected: ', itemSelected)
-    // console.log('type: ', type)
     if (type === 'user') {
       if (userBagSelected.value.length < 6) {
-        let index = userBag.value.findIndex((item) => item.id === itemSelected.id)
-        userBag.value.splice(index, 1)
-        userBagSelected.value.push(itemSelected)
+        moveObjFromArrayToArrayByKey(itemSelected, userBag.value, userBagSelected.value, 'id')
       }
     }
 
     if (type === 'store') {
       if (storeBagSelected.value.length < 1) {
-        let index = storeBag.value.findIndex((item) => item.id === itemSelected.id)
-        storeBag.value.splice(index, 1)
-        storeBagSelected.value.push(itemSelected)
+        moveObjFromArrayToArrayByKey(itemSelected, storeBag.value, storeBagSelected.value, 'id')
       }
     }
-    // console.log('userBagSelected.value: ', userBagSelected.value)
   }
 
   return { userBag, userBagSelected, storeBag, storeBagSelected, selectItem }
